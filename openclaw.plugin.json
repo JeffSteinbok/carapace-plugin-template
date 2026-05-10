@@ -1,0 +1,25 @@
+{
+  "id": "my-plugin",
+  "name": "My Plugin",
+  "description": "A simple example OpenClaw plugin built with Carapace.",
+  "version": "1.0.0",
+  "entry": "./dist/adapter.js",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "greeting": {
+        "description": "Word to use at the start of the greeting (e.g. \"Hello\", \"Howdy\"). Defaults to \"Hello\".",
+        "type": "string"
+      }
+    }
+  },
+  "contracts": {
+    "tools": [
+      "greet"
+    ]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "openclaw": {}
+}

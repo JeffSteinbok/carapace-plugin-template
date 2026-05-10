@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+openclaw.plugin.json
+
+# Excluded from the template — generate your own after npm install
+package-lock.json
