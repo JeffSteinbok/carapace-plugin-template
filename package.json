@@ -1,7 +1,8 @@
 {
   "name": "my-plugin",
   "version": "1.0.0",
-  "description": "🦞🐚 An OpenClaw plugin built with Carapace",
+  "description": "\ud83e\udd9e\ud83d\udc1a An OpenClaw plugin built with Carapace",
+  "repository": "github:JeffSteinbok/carapace-plugin-template",
   "type": "module",
   "bin": {
     "my-plugin": "./dist/bin/my-plugin.js"
