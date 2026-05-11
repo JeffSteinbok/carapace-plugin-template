@@ -133,7 +133,7 @@ const result = await tools["greet"].execute("id", { name: "World" });
 
 ## Built with 🦞🐚 Carapace
 
-[carapace-plugin-sdk](https://github.com/JeffSteinbok/carapace-plugin-sdk) — the SDK powering this template.
+[carapace-plugin-sdk](https://www.npmjs.com/package/carapace-plugin-sdk) — the SDK powering this template. ([source](https://github.com/JeffSteinbok/carapace-plugin-sdk))
 
 ## License
 
