@@ -1,0 +1,8 @@
+CARAPACE
+
+Plugin Template
+
+Scaffold a new OpenClaw plugin in seconds.
+Pre-wired CI, release workflows, and trusted npm publishing out of the box.
+
+• One Command  • CI Ready  • NPM Publish  • MIT Licensed
