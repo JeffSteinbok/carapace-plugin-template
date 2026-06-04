@@ -1,7 +1,7 @@
 {
   "name": "my-plugin",
   "version": "1.0.0",
-  "description": "\ud83e\udd9e\ud83d\udc1a An OpenClaw plugin built with Carapace",
+  "description": "🦞🐚 An OpenClaw plugin built with Carapace",
   "repository": "github:JeffSteinbok/carapace-plugin-template",
   "type": "module",
   "bin": {
@@ -12,14 +12,14 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "carapace-plugin-sdk": "^1.0.1",
-    "@sinclair/typebox": "^0.34.48"
+    "@sinclair/typebox": "^0.34.48",
+    "carapace-plugin-sdk": "^1.0.1"
   },
   "devDependencies": {
     "@types/node": "^22",
     "tsup": "^8.3.0",
     "typescript": "^5.7",
-    "vitest": "^2.1.8"
+    "vitest": "^4.1.8"
   },
   "peerDependencies": {
     "openclaw": "^2026.4.23"
