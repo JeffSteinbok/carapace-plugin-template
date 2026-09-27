@@ -21,5 +21,8 @@
   "activation": {
     "onStartup": true
   },
+  "source": {
+    "canonicalRepo": "JeffSteinbok/carapace-plugin-template"
+  },
   "openclaw": {}
 }
