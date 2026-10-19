@@ -7,19 +7,25 @@
   "bin": {
     "my-plugin": "./dist/bin/my-plugin.js"
   },
+  "files": [
+    "dist",
+    "openclaw.plugin.json",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsup && carapace-generate-cli --entry ./dist/plugin.js --out ./dist/bin",
-    "test": "vitest run"
+    "test": "vitest run",
+    "deploy": "node scripts/deploy.mjs"
   },
   "dependencies": {
-    "@sinclair/typebox": "^0.34.48",
-    "carapace-plugin-sdk": "^3.0.0"
+    "carapace-plugin-sdk": "^3.0.1"
   },
   "devDependencies": {
     "@types/node": "^22",
     "tsup": "^8.3.0",
     "typescript": "^5.7",
-    "vitest": "^4.1.8"
+    "vitest": "^4.1.8",
+    "@sinclair/typebox": "^0.34.48"
   },
   "peerDependencies": {
     "openclaw": "^2026.4.23"

@@ -27,6 +27,8 @@ my-plugin/
 │   └── plugin.ts         ← Define your tools and config here
 ├── tests/
 │   └── plugin.test.ts    ← Tests (vitest)
+├── scripts/
+│   └── deploy.mjs        ← npm run deploy (build + pack + install)
 ├── package.json
 ├── tsconfig.json         ← One line: extends SDK base config
 └── tsup.config.ts        ← Three lines: uses SDK shared config
@@ -40,6 +42,8 @@ dist/
 └── bin/
     └── my-plugin.js      ← Standalone CLI
 openclaw.plugin.json      ← Plugin manifest
+out/
+└── my-plugin.tgz         ← Packed plugin (npm run deploy)
 ```
 
 ## Writing your plugin
@@ -102,6 +106,39 @@ MY_PLUGIN_GREETING=Howdy node dist/bin/my-plugin.js greet --name World
 Each config field in `configSchema` maps to an env var:
 `<PLUGIN_ID_SCREAMING_SNAKE>_<FIELD_SCREAMING_SNAKE>`
 
+## Deploying to OpenClaw
+
+Install the plugin as a packed, managed install rather than pointing
+`plugins.load.paths` at your dev checkout. A managed install contains only the
+built code and production dependencies, so OpenClaw doesn't have to snapshot
+your dev `node_modules` (vitest, tsup, typescript, …) on every update.
+
+```bash
+npm run deploy              # build → pack to out/my-plugin.tgz → print install command
+npm run deploy -- --install # same, then run the install command
+```
+
+The install command it prints (and runs with `--install`) is:
+
+```bash
+openclaw plugins install npm-pack:<repo>/out/my-plugin.tgz --force
+```
+
+OpenClaw installs the tarball into its managed plugin root and installs the
+package's `dependencies` (not `devDependencies`) from npm. Dev loop: edit →
+`npm run deploy -- --install`.
+
+What goes in the pack is controlled by `"files"` in `package.json` (default:
+`dist`, `openclaw.plugin.json`, `README.md`). If your plugin loads anything
+else at runtime — data files, scripts, assets — add it to `"files"`, and make
+sure every runtime import is in `dependencies`. The deploy script lists the
+packed files and refuses to deploy if `src/`, `tests/` or `node_modules/` end
+up in the pack.
+
+> The pack is made with `npm pack`, not `openclaw plugins pack`: the latter
+> only accepts plugins built with OpenClaw's own tool/feature authoring
+> metadata and bundles everything into a single file.
+
 ## Testing
 
 Tests call `createEntry()` directly — no mocking needed:
@@ -130,6 +167,8 @@ const result = await tools["greet"].execute("id", { name: "World" });
 - [ ] `npm run build` succeeds
 - [ ] `npm test` passes
 - [ ] `node dist/bin/<name>.js --help` works
+- [ ] `"files"` in `package.json` covers everything loaded at runtime
+- [ ] `npm run deploy` packs cleanly
 
 ## Built with 🦞🐚 Carapace
 
